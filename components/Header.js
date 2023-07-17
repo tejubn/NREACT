@@ -1,18 +1,35 @@
-import { LOGO_URL } from "../utilities/constants";
-const Header=function (){
-    return (
-        <div className='container flex justify-between'>
-            <div className='logo'>
-                <img src={LOGO_URL} className='w-28'/>
-            </div>
-            <div className='links'>
-                <ul className='flex gap-5 mx-5 my-5 text-xl'>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Cart</li>
-                    <li>Grocery</li>
-                </ul>
-            </div>
-        </div>
-    )};
+import { LOGO_URL } from "../utils/constants";
+import { useState } from "react";
+
+const Header = () => {
+  const [btnNameReact, setBtnNameReact] = useState("Login");
+  console.log("Header render");
+
+  return (
+    <div className="header flex justify-between mx-3 shadow-lg bg-slate-50">
+      <div className="logo-container">
+        <img className="logo w-32" src={LOGO_URL} />
+      </div>
+      <div className="nav-items flex my-10">
+        <ul className="flex font-semibold justify-around gap-9">
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>Cart</li>
+          <li><button
+            className="login"
+            onClick={() => {
+              btnNameReact === "Login"
+                ? setBtnNameReact("Logout")
+                : setBtnNameReact("Login");
+            }}
+          >
+            {btnNameReact}
+          </button></li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
 export default Header;

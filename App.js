@@ -7,7 +7,7 @@ import Header from './components/Header';
     const AppLayout=()=>{
         return(
             <div className='container'>
-                <Header />
+                <Header className="fixed top-0 left-0"/>
                 <Body />
             </div>
         )
