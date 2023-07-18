@@ -3,3 +3,9 @@ export const CDN_URL =
 
 export const LOGO_URL =
   "https://graphicsfamily.com/wp-content/uploads/edd/2021/06/Editable-Photoshop-Food-Logo-Design-PNG-Transparent.png";
+export const API_URL="https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9307735&lng=77.5838302&page_type=DESKTOP_WEB_LISTING";
+
+export const MENU_API=
+"https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9307735&lng=77.5838302&restaurantId=";
+
+export const MENU_IMG="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/";
