@@ -14,7 +14,7 @@ const red="bg-red-600 text-xs font-semibold text-white px-2";
     deliveryTime,
   } = resData?.data;
 let data="";
-  if(avgRating>4.0)
+  if(avgRating>=4.0)
 {
   data=green;
 }
