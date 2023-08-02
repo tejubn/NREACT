@@ -10,7 +10,7 @@ const ItemList = ({ items }) => {
         >
           <div className="w-9/12">
             <div className="py-2">
-              <span className="font-bold">{item.card.info.name}</span>
+              <span className="font-semibold">{item.card.info.name}</span>
               <span>
                 - ₹
                 {item.card.info.price
@@ -21,8 +21,8 @@ const ItemList = ({ items }) => {
             <p className="text-xs">{item.card.info.description}</p>
           </div>
           <div className="w-3/12 p-4">
-            <div className="absolute">
-              <button className="px-3 py-2 m-14 rounded-lg bg-white text-green-600 shadow-lg text-xs font-bold">
+            <div className="relative left-7 top-20">
+              <button className="px-3 py-2 rounded-lg bg-orange-600 text-white shadow-lg text-xs font-bold">
                 Add +
               </button>
             </div>
