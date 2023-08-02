@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   // Local State Variable - Super powerful variable
@@ -9,7 +10,7 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
-
+const onlineStatus=useOnlineStatus();
   // Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
 
   useEffect(() => {
@@ -31,7 +32,12 @@ const Body = () => {
     );
   };
 
-
+if(onlineStatus==false)
+{
+return(
+  <h1>hey your are offline....! Don't panic</h1>
+)
+}
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
