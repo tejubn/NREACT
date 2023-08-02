@@ -11,7 +11,7 @@ const Header = () => {
     <div className="header flex justify-between mx-3 shadow-lg bg-slate-50">
       <div className="logo-container">
       <Link href="/">
-        <img className="logo w-32" src={LOGO_URL} /></Link>
+        <img className="logo w-32 rounded-full" src={LOGO_URL} /></Link>
       </div>
       <div className="nav-items flex my-10">
         <ul className="flex font-semibold justify-around gap-9">

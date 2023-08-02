@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { FaSearch } from "react-icons/fa";
 
 const Body = () => {
   // Local State Variable - Super powerful variable
@@ -46,18 +47,19 @@ return(
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter flex">
+      <div className="filter flex mx-12">
         <div className="search m-4 p-4">
           <input
             type="text"
-            className="border border-solid border-black"
+            className="border border-solid border-black rounded-2xl py-1"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
+          <span dir="rtl" >
           <button
-            className="px-4 py-2 bg-green-100 m-4 rounded-lg"
+            className="px-4 py-2 mx-2 bg-orange-600 rounded-3xl"
             onClick={() => {
               // Filter the restraunt cards and update the UI
               // searchText
@@ -70,25 +72,24 @@ return(
               setFilteredRestaurant(filteredRestaurant);
             }}
           >
-            Search
+            <span className="text-white">search</span>
           </button>
+          </span>
         </div>
         <div className="search m-4 p-4 flex items-center">
           <button
-            className="px-4 py-2 bg-gray-100 rounded-lg"
+            className="px-4 py-2 bg-gray-100 border-2 text-orange-500 font-bold border-orange-500 rounded-xl"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
                 (res) => res.info.avgRating > 4
               );
               setFilteredRestaurant(filteredList);
             }}
-          >
-            Top Rated Restaurants
-          </button>
+          >Ratings 4.0+ </button>
         </div>
 
       </div>
-      <div className="restaurant  grid gap-x-8 gap-y-4 grid-cols-4">
+      <div className="restaurant  grid gap-x-8 gap-y-4 grid-cols-4 mx-12">
         {filteredRestaurant.map((restaurant) => (
           console.log(restaurant?.info.promoted),
           <Link key={restaurant.info.id} to={"/restaurants/"+restaurant.info.id}>
