@@ -1,9 +1,13 @@
 import { useContext } from "react";
 import { CDN_URL } from "../utils/constants";
+import { AiFillStar } from 'react-icons/ai';
+
 
 const RestaurantCard = (props) => {
   const { resData } = props;
-
+  const green="bg-green-600 text-xs font-semibold text-white px-2";
+  const red="bg-red-600 text-xs font-semibold text-white px-2";
+ 
   const {
     cloudinaryImageId,
     name,
@@ -13,20 +17,42 @@ const RestaurantCard = (props) => {
   } = resData;
 
   const {deliveryTime}=resData.sla;
-console.log(resData)
-  return (
-    <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200">
-      <img
-        className="rounded-lg"
-        alt="res-logo"
-        src={CDN_URL + cloudinaryImageId}
-      />
-      <h3 className="font-bold py-4 text-lg">{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating} stars</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{deliveryTime} minutes</h4>
+// console.log(resData)
+let data="";
+if(avgRating>=4.0)
+{
+data=green;
+}
+else{
+data=red;
+} 
+return (
+  <div className="">
+  <div className="container shadow-md p-4">
+    <img
+      className="res-logo m-3"
+      alt="res-logo"
+      src={CDN_URL + cloudinaryImageId}
+    />
+    <div className="mx-3 mb-3">
+      
+    <h3 className="font-bold my-1">{name}</h3>
+    <p className="text-xs	">{cuisines.join(", ")}</p>
+    <div className="flex justify-between my-3">       
+    
+        <button className={data}>
+        {avgRating*1.0} 
+        <AiFillStar className="inline"/>
+      </button>
+
+      <h4 className="text-sm font-semibold">{deliveryTime} mins</h4>
+      <h4 className="text-sm font-semibold">{costForTwo} </h4>
+      
     </div>
+  
+    </div>
+    </div>
+</div>
   );
 };
 
@@ -46,5 +72,5 @@ export const withPromtedLabel = (RestaurantCard) => {
     );
   };
 };
-
 export default RestaurantCard;
+
