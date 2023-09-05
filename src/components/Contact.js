@@ -1,7 +1,33 @@
+import { ReactDOM } from "react";
 const Contact = () => {
+  const empolyeeData = [
+    {
+      name: "abc",
+      empid: 123,
+    },
+    {
+      name: "hjs",
+      empid: 126,
+    },
+    {
+      name: "iou",
+      empid: 173,
+    },
+  ];
+
   return (
     <div>
-      <h1>Contact Us Page</h1>
+      {empolyeeData.map((data) => (
+        // <p>{data.name}</p>
+        console.log(data),
+        <table>
+          <tr>
+            <td>{data.name}</td>
+            
+            <td>{data.empid}</td>
+          </tr>
+        </table>
+      ))}
     </div>
   );
 };

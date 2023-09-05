@@ -1,5 +1,6 @@
 # Namaste React 🚀
-
+# reducx toolkit
+- install redux/toolkit,react-redux
 
 # Parcel
 - Dev Build

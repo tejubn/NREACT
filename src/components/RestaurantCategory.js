@@ -1,11 +1,16 @@
-import { BiChevronDown } from "react-icons/bi";
+import { BiChevronDown ,BiChevronUp} from "react-icons/bi";
+import {GrDown,GrUp} from "react-icons/gr";
 import ItemList from "./ItemList";
 import { useState } from "react";
-const RestaurantCategory = ({ data }) => {
+const RestaurantCategory = ({ data,showItems,setShowindex }) => {
+ 
+const [toggle,setToggle]=useState(false);
   // console.log(data.itemcards.length)
-const [showItems,setShowItems]=useState(true);
+// const [showItems,setShowItems]=useState(false);
 const handleClick=()=>{
-  setShowItems(!showItems)
+  // setShowItems(!showItems)
+  setShowindex()
+  setToggle(!toggle)
 }
   return (
     <>
@@ -14,10 +19,10 @@ const handleClick=()=>{
           <p className="text-xl font-bold">
             {data.title} ({data.itemCards.length})
           </p>
-          <BiChevronDown className="inline" />
+         {toggle ?<GrUp className="inline" />:<GrDown className="inline" />}
         </div>
 
-        {showItems && <ItemList items={data.itemCards} />}
+        {showItems && toggle && <ItemList items={data.itemCards} />}
       </div>
     </>
   );
