@@ -1,29 +1,31 @@
+import Counter from "../components/Counter";
 import { useSelector } from "react-redux";
 import { CDN_URL, EMPTY } from "../utils/constants";
 import ItemList from "./ItemList";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import Child from "../components/Child";
+import { useSelector } from "react-redux";
 const CartItem = ({items}) => {
+
+  const [itemdata, setuniquedata] = useState(items);
+  // console.log(cartItems)
+  useEffect(() => {
+    // Filter out duplicate values
+    const uniqueitemdata = [...new Set(itemdata)];
+
+    // Update state with unique numbers
+    setuniquedata(uniqueitemdata);
+    console.log(uniqueitemdata)
+  }, []);
+  
   let [qty, setQty] = useState(1);
-  const add = () => {
-    ++qty;
-    setQty(qty);
-  };
-  const sub = () => {
-    if (qty > 1) {
-      --qty;
-      setQty(qty);
-    } else {
-      qty = 0;
-      setQty(qty);
-    }
-  };
   if (qty >= 1) {
     return (
       <div className="text-center m-4 p-4">
         <h1 className="text-2xl font-bold">Cart</h1>
         <div className="w-6/12 m-auto">
-          {items.map((item) => (
+          {itemdata.map((item) => (
             <div
               key={item.card.info.id}
               className="p-2 m-2 border-gray-200 border-b-2 text-left flex justify-between"
@@ -38,33 +40,16 @@ const CartItem = ({items}) => {
                       : item.card.info.defaultPrice / 100}
                   </span>
                 </div>
-                <p className="text-xs">{item.card.info.description}</p>
               </div>
               <div className="w-3/12 p-4">
-                <div className="relative left-7 top-20">
-                  <div className="flex relative right-8 top-4">
-                        
-                    <button
-                      className="px-2 py-1 rounded border-2 border-orange-600 bg-white text-orange-600 shadow-lg text-xs font-bold"
-                      onClick={() => add()}
-                    >
-                      <AiOutlinePlus />
-                    </button>
-                    <p className="bg-white text-orange-600 px-6 border-y-2 border-orange-600">
-                      {qty}
-                    </p>
-                    <button
-                      className="px-2 py-1 rounded border-2 border-orange-600 bg-white text-orange-600 shadow-lg text-xs font-bold"
-                      onClick={() => sub()}
-                    >
-                      <AiOutlineMinus />
-                    </button>
-                  </div>
-                </div>
+                
                 <img
                   src={CDN_URL + item.card.info.imageId}
                   className="w-full"
                 />
+                <Counter cost=                   {item.card.info.price
+                      ? item.card.info.price / 100
+                      : item.card.info.defaultPrice / 100}/>
               </div>
             </div>
           ))}

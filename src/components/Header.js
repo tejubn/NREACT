@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../utils/constants";
-import { useState, useContext } from "react";
+import { useState, useContext,useEffect } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
@@ -13,9 +13,9 @@ const Header = () => {
   //subscribing to the store using selector
   const cartItems = useSelector((store) => store.cart.items);
   console.log(cartItems);
-
-  //  console.log(loggedUser)
-  //  console.log(status)
+      // Filter out duplicate values
+      const uniqueitemdata = [...new Set(cartItems)];
+      console.log(uniqueitemdata.length)
   return (
     <div className="header flex justify-between mx-3 shadow-lg bg-slate-50">
       <div className="logo-container">
@@ -40,7 +40,7 @@ const Header = () => {
           </li>
           <li>
             <Link to="/cart">
-              <BsCart4 className="inline text-2xl" /> ({cartItems.length})
+              <BsCart4 className="inline text-2xl" /> ({uniqueitemdata.length})
             </Link>
           </li>
           <li>{loggedUser}</li>

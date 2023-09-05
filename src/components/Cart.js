@@ -6,6 +6,11 @@ import { useState } from "react";
 import CartItem from "./CartItem";
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
-  return <CartItem items={cartItems} />;
+  return (
+    <div>
+        <CartItem items={cartItems} />
+    </div>
+  )
+;
 };
 export default Cart;
